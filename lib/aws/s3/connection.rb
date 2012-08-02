@@ -198,6 +198,8 @@ module AWS
           def establish_connection!(options = {})
             # After you've already established the default connection, just specify 
             # the difference for subsequent connections
+            # Clear nil options
+            options = options.delete_if! { |k,v| v == nil }
             options = default_connection.options.merge(options) if connected?
             connections[connection_name] = Connection.connect(options)
           end
