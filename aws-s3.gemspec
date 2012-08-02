@@ -6,10 +6,10 @@ Gem::Specification.new do |s|
   s.name              = 'aws-s3'
   s.email             = 'marcel@vernix.org'
   s.author            = 'Marcel Molina Jr.'
-  s.version           = ErroneousAPI::VERSION
+  s.version           = AWS::S3::VERSION
   s.summary           = "Client library for Amazon's Simple Storage Service's REST API"
   s.description       = s.summary
-  s.files             = FileList['Rakefile', 'lib/**/*.rb', 'bin/*', 'support/**/*.rb'] 
+  s.files             = Dir['lib/**/*']
 
   s.add_dependency 'xml-simple'
   s.add_dependency 'builder'
