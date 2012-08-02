@@ -1,5 +1,5 @@
 $:.unshift File.dirname(__FILE__) + '/lib'
-require 'lib/aws/s3/version'
+require 'aws/s3/version'
 
 #gem server: public
 Gem::Specification.new do |s|
