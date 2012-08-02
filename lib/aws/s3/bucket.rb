@@ -102,6 +102,14 @@ module AWS
           new(get(path(name, options)).bucket)
         end
         
+        def find_or_create(name = nil, options ={})
+          begin
+            new(get(path(name, options)).bucket)
+          rescue NoSuchBucket
+            create(name, options)
+          end
+        end
+        
         # Return just the objects in the bucket named <tt>name</tt>.
         #
         # By default all objects of the named bucket will be returned. There are options, though, for filtering
