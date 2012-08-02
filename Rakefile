@@ -1,9 +1,9 @@
 require 'rubygems'
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
-require 'rake/packagetask'
-require 'rake/gempackagetask'
+require 'rdoc/task'
+require 'rubygems/package_task'
+# require 'rake/gempackagetask'
 
 require File.dirname(__FILE__) + '/lib/aws/s3'
 
@@ -59,7 +59,7 @@ end
 namespace :dist do  
   spec = Gem::Specification.new do |s|
     s.name              = 'aws-s3'
-    s.version           = Gem::Version.new(AWS::S3::Version)
+    s.version           = AWS::S3::VERSION
     s.summary           = "Client library for Amazon's Simple Storage Service's REST API"
     s.description       = s.summary
     s.email             = 'marcel@vernix.org'
@@ -81,9 +81,10 @@ namespace :dist do
   end
     
   # Regenerate README before packaging
-  task :package => 'doc:readme'
-  Rake::GemPackageTask.new(spec) do |pkg|
+  task :package# => 'doc:readme'
+  Rake::PackageTask.new(spec) do |pkg|
     pkg.need_tar_gz = true
+    pkg.version     = AWS::S3::VERSION
     pkg.package_files.include('{lib,script,test,support}/**/*')
     pkg.package_files.include('README')
     pkg.package_files.include('COPYING')
